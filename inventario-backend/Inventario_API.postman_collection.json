@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "inventario-backend-api",
+		"name": "Inventario API",
+		"description": "Colección completa de endpoints para el sistema de gestión de inventario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Verifica que el servidor esté funcionando correctamente"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorías",
+			"item": [
+				{
+					"name": "Obtener todas las categorías",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categorias",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categorias"
+							]
+						},
+						"description": "Obtiene una lista de todas las categorías disponibles"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener categoría por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categorias/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"1"
+							]
+						},
+						"description": "Obtiene una categoría específica por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nueva categoría",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Electrónica\",\n    \"descripcion\": \"Dispositivos y componentes electrónicos\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categorias",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categorias"
+							]
+						},
+						"description": "Crea una nueva categoría"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar categoría",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Electrónica Actualizada\",\n    \"descripcion\": \"Descripción actualizada de electrónica\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categorias/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"1"
+							]
+						},
+						"description": "Actualiza una categoría existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar categoría",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categorias/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categorias",
+								"1"
+							]
+						},
+						"description": "Elimina una categoría. Nota: No se puede eliminar si tiene productos asociados"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Obtener todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos"
+							]
+						},
+						"description": "Obtiene una lista de todos los productos con sus categorías"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/productos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Obtiene un producto específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nuevo producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Laptop Dell Inspiron 15\",\n    \"descripcion\": \"Laptop Dell con procesador Intel i5, 8GB RAM, 256GB SSD\",\n    \"precio\": 899.99,\n    \"stock\": 10,\n    \"categoria_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos"
+							]
+						},
+						"description": "Crea un nuevo producto. Requiere que la categoría exista"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Laptop Dell Inspiron 15 - Actualizada\",\n    \"descripcion\": \"Descripción actualizada\",\n    \"precio\": 949.99,\n    \"stock\": 15,\n    \"categoria_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/productos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Actualiza un producto existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/productos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Elimina un producto del inventario"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener productos por categoría",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/productos/categoria/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"productos",
+								"categoria",
+								"1"
+							]
+						},
+						"description": "Obtiene todos los productos de una categoría específica"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimientos de Inventario",
+			"item": [
+				{
+					"name": "Obtener todos los movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movimientos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movimientos"
+							]
+						},
+						"description": "Obtiene una lista de todos los movimientos de inventario"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener movimiento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movimientos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movimientos",
+								"1"
+							]
+						},
+						"description": "Obtiene un movimiento específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear movimiento - Entrada",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"producto_id\": 1,\n    \"tipo\": \"entrada\",\n    \"cantidad\": 5,\n    \"motivo\": \"Compra de proveedor\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/movimientos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movimientos"
+							]
+						},
+						"description": "Crea un movimiento de entrada (aumenta el stock del producto)"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear movimiento - Salida",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"producto_id\": 1,\n    \"tipo\": \"salida\",\n    \"cantidad\": 2,\n    \"motivo\": \"Venta a cliente\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/movimientos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movimientos"
+							]
+						},
+						"description": "Crea un movimiento de salida (disminuye el stock del producto). Verifica que haya stock suficiente"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener movimientos por producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movimientos/producto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movimientos",
+								"producto",
+								"1"
+							]
+						},
+						"description": "Obtiene todos los movimientos de un producto específico"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
+

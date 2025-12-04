@@ -1,0 +1,36 @@
+# Binarios
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+inventario-backend
+
+# Archivos de prueba
+*.test
+*.out
+
+# Dependencias
+vendor/
+
+# Variables de entorno
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Archivos temporales
+tmp/
+temp/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
