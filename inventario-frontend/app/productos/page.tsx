@@ -158,11 +158,12 @@ export default function ProductosPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Productos</h1>
-        <Button onClick={handleCreate}>
-          <Plus className="h-4 w-4 mr-2" />
-          Nuevo Producto
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Productos</h1>
+        <Button onClick={handleCreate} className="shrink-0">
+          <Plus className="h-4 w-4 sm:mr-2" />
+          <span className="hidden sm:inline">Nuevo Producto</span>
+          <span className="sm:hidden">Nuevo</span>
         </Button>
       </div>
 

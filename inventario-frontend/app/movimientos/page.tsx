@@ -93,11 +93,12 @@ export default function MovimientosPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Movimientos de Inventario</h1>
-        <Button onClick={handleCreate}>
-          <Plus className="h-4 w-4 mr-2" />
-          Nuevo Movimiento
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Movimientos de Inventario</h1>
+        <Button onClick={handleCreate} className="shrink-0">
+          <Plus className="h-4 w-4 sm:mr-2" />
+          <span className="hidden sm:inline">Nuevo Movimiento</span>
+          <span className="sm:hidden">Nuevo</span>
         </Button>
       </div>
 

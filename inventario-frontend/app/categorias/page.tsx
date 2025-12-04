@@ -150,11 +150,12 @@ export default function CategoriasPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Categorías</h1>
-        <Button onClick={handleCreate}>
-          <Plus className="h-4 w-4 mr-2" />
-          Nueva Categoría
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Categorías</h1>
+        <Button onClick={handleCreate} className="shrink-0">
+          <Plus className="h-4 w-4 sm:mr-2" />
+          <span className="hidden sm:inline">Nueva Categoría</span>
+          <span className="sm:hidden">Nueva</span>
         </Button>
       </div>
 
