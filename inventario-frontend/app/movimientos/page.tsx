@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -28,11 +28,7 @@ export default function MovimientosPage() {
   const [formOpen, setFormOpen] = useState(false);
   const { showToast } = useToast();
 
-  useEffect(() => {
-    loadMovimientos();
-  }, []);
-
-  const loadMovimientos = async () => {
+  const loadMovimientos = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -53,7 +49,11 @@ export default function MovimientosPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showToast]);
+
+  useEffect(() => {
+    loadMovimientos();
+  }, [loadMovimientos]);
 
   const handleCreate = () => {
     setFormOpen(true);

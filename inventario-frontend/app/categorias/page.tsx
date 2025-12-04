@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -30,11 +30,7 @@ export default function CategoriasPage() {
   const { showToast } = useToast();
   const { confirm, ConfirmDialog } = useConfirm();
 
-  useEffect(() => {
-    loadCategorias();
-  }, []);
-
-  const loadCategorias = async () => {
+  const loadCategorias = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -55,7 +51,11 @@ export default function CategoriasPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showToast]);
+
+  useEffect(() => {
+    loadCategorias();
+  }, [loadCategorias]);
 
   const handleCreate = () => {
     setEditingCategoria(undefined);
@@ -207,7 +207,7 @@ export default function CategoriasPage() {
               </div>
             ) : filteredCategorias.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
-                No se encontraron categorías que coincidan con "{searchTerm}"
+                No se encontraron categorías que coincidan con &quot;{searchTerm}&quot;
               </div>
             ) : (
               <Table>

@@ -86,17 +86,17 @@ function ToastItem({
 }) {
   const [isExiting, setIsExiting] = React.useState(false);
 
-  const handleRemove = () => {
+  const handleRemove = React.useCallback(() => {
     setIsExiting(true);
     setTimeout(() => onRemove(toast.id), 300);
-  };
+  }, [onRemove, toast.id]);
 
   React.useEffect(() => {
     if (toast.duration && toast.duration > 0) {
       const timer = setTimeout(handleRemove, toast.duration);
       return () => clearTimeout(timer);
     }
-  }, [toast.duration]);
+  }, [toast.duration, handleRemove]);
 
   const icons = {
     success: CheckCircle2,
