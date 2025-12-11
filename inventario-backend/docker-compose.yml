@@ -1,0 +1,28 @@
+services:
+  inventario-backend:
+    build: .
+    image: inventario-backend:latest
+    container_name: inventario-backend
+    ports:
+      - "4000:4000"
+    # network_mode: host  # Descomenta esto y comenta 'ports' si necesitas usar host network
+    env_file:
+      - .env.dev
+    environment:
+      - SERVER_PORT=4000
+      - DB_HOST=${DB_HOST:-localhost}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME:-inventario_db}
+      - DB_SSLMODE=${DB_SSLMODE:-disable}
+      - ENVIRONMENT=development
+      - LOG_LEVEL=warn
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
