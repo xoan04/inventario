@@ -17,15 +17,18 @@ clean: ## Limpiar archivos compilados
 	rm -f inventario-backend
 	rm -f *.exe
 
-db-setup: ## Configurar la base de datos (requiere PostgreSQL)
-	@echo "Asegúrate de tener PostgreSQL corriendo y haber creado la base de datos 'inventario_db'"
-	@echo "Ejecuta: psql -U postgres -d inventario_db -f database/schema.sql"
+db-setup: ## Configurar la base de datos usando .env (requiere PostgreSQL)
+	@echo "🔧 Configurando base de datos usando credenciales del .env..."
+	@go run cmd/setup-db/main.go
+
+db-setup-ps1: ## Configurar la base de datos usando PowerShell script (solo Windows)
+	@powershell -ExecutionPolicy Bypass -File ./run-schema.ps1
 
 db-reset: ## Reiniciar la base de datos (CUIDADO: elimina todos los datos)
 	@echo "⚠️  Esto eliminará todos los datos. Presiona Ctrl+C para cancelar..."
 	@sleep 3
-	psql -U postgres -d inventario_db -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
-	psql -U postgres -d inventario_db -f database/schema.sql
+	@echo "🔧 Reiniciando base de datos usando credenciales del .env..."
+	@go run cmd/setup-db/main.go --reset || echo "Primero ejecuta: go run cmd/setup-db/main.go para ver las opciones"
 
 deps: ## Instalar dependencias
 	go mod download

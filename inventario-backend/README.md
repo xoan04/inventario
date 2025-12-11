@@ -59,10 +59,33 @@ SERVER_PORT=8080
 
 ### 4. Ejecutar migraciones
 
-Ejecuta el script SQL para crear las tablas:
+Tienes varias opciones para ejecutar el schema usando las credenciales del archivo `.env`:
+
+**Opción 1: Usando el programa Go (recomendado - funciona en cualquier plataforma)**
 
 ```bash
-psql -U postgres -d inventario_db -f database/schema.sql
+go run cmd/setup-db/main.go
+```
+
+**Opción 2: Usando el script de PowerShell (solo Windows)**
+
+```powershell
+.\run-schema.ps1
+```
+
+O usando el Makefile:
+
+```bash
+make db-setup          # Usa el programa Go
+make db-setup-ps1      # Usa el script PowerShell (solo Windows)
+```
+
+**Opción 3: Manualmente (usando psql directamente)**
+
+Si prefieres ejecutarlo manualmente, primero carga las variables del `.env` y luego ejecuta:
+
+```bash
+psql -h localhost -p 5432 -U postgres -d inventario_db -f database/schema.sql
 ```
 
 O desde psql:
