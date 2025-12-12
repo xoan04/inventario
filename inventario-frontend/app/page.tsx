@@ -7,7 +7,10 @@ export default function Home() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold mb-2">Bienvenido al Sistema de Inventario</h1>
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-4xl font-bold">Bienvenido al Sistema de Inventario</h1>
+          <span className="text-sm text-muted-foreground font-medium">V 1.2</span>
+        </div>
         <p className="text-muted-foreground">
           Gestiona tus productos, categorías y movimientos de inventario de manera eficiente
         </p>
